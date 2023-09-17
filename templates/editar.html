@@ -1,0 +1,46 @@
+{% extends "template.html" %}
+{% block conteudo %}
+
+
+<form action="{{url_for('atualizar')}}" method="post" enctype="multipart/form-data">
+    <div class="row align-items-start">
+        <div class="col-8">
+            <fieldset>
+                <input type="hidden" name="id" value="{{id}}">
+                {{form.csrf_token()}}
+                <div class="form-group">
+                    {{form.nome.label(class="form-label")}}
+                    {{form.nome(class="form-control")}}
+                </div>
+                <div class="form-group">
+                    {{form.categoria.label(class="form-label")}}
+                    {{form.categoria(class="form-control")}}
+                </div>
+                <div class="form-group">
+                    {{form.console.label(class="form-label")}}
+                    {{form.console(class="form-control")}}
+                </div>
+                <div class="form-group">
+                    {{form.salvar(class="btn btn-primary buttons")}}
+                    <a class="btn btn-danger buttons" href="{{url_for('index')}}">Voltar</a>
+                </div>
+            </fieldset>
+        </div>
+
+        <div class="col-4">
+            <figure class="img thumbnail">
+                <img class="img-fluid" src="{{ url_for('imagem', nome_arquivo=capa_jogo) }}">
+                <figcaption>
+                    <label class="fileContainer">
+                        Mudar Capa
+                        <input type="file" name="arquivo" accept=".jpg">
+                    </label>
+                </figcaption>
+            </figure>
+        </div>
+
+    </div>
+
+
+</form>
+{% endblock %}

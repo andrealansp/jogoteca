@@ -1,0 +1,47 @@
+{% extends "template.html" %}
+{% block conteudo %}
+
+<div class="row align-items-start">
+    {% for jogo in jogos %}
+    <div class="card m-2" style="width: 18rem;">
+        <img src="{{jogo.capa}}" height="150px" class="card-img-top img-fluid img-thumbnail"
+             alt="...">
+        <div class="card-body">
+            <h5 class="card-title">{{jogo.nome}}</h5>
+            <p class="card-text">Categoria: {{jogo.categoria}}</p>
+            <p class="card-text">Console: {{jogo.console}}</p>
+            <a href="{{url_for('editar', id=jogo.id)}}"><i class="bi bi-check2-circle"></i></a> |
+            <a href="{{url_for('deletar', id=jogo.id)}}"><i class="bi bi-trash"></i></a>
+        </div>
+    </div>
+    {%endfor%}
+
+    <div class="col invisible">
+        <table class="table table-striped table-responsive table-bordered">
+            <thead class="thead-default">
+            <tr>
+                <th>Nome</th>
+                <th>Categoria</th>
+                <th>Console</th>
+                <th>Ações</th>
+            </tr>
+            </thead>
+            <tbody class="table-hover">
+            {% for jogo in jogos %}
+            <tr>
+                <td>{{jogo.nome}}</td>
+                <td>{{jogo.categoria}}</td>
+                <td>{{jogo.console}}</td>
+                <td>
+                    <a href="{{url_for('editar', id=jogo.id)}}"><i class="bi bi-check2-circle"></i></a> |
+                    <a href="{{url_for('deletar', id=jogo.id)}}"><i class="bi bi-trash"></i></a>
+                </td>
+            </tr>
+
+            {%endfor%}
+            </tbody>
+        </table>
+        {% endblock %}
+    </div>
+
+</div>
